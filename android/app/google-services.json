@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "934119296637",
+    "project_id": "estheva-5127e",
+    "storage_bucket": "estheva-5127e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934119296637:android:590d3d8c29e27c8d2e2b14",
+        "android_client_info": {
+          "package_name": "com.estheva.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9a3NQZYQWUp3-NkbEzOjvS6b-3OtgrFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934119296637:android:5bd1c3f409e573b52e2b14",
+        "android_client_info": {
+          "package_name": "com.estheva_admin.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9a3NQZYQWUp3-NkbEzOjvS6b-3OtgrFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934119296637:android:bcd0961fba48527b2e2b14",
+        "android_client_info": {
+          "package_name": "com.esthevaadmin.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9a3NQZYQWUp3-NkbEzOjvS6b-3OtgrFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
