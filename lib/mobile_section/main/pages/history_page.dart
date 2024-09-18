@@ -1,11 +1,11 @@
+import 'package:estheva_admin/mobile_section/auth/signup_screen.dart';
+import 'package:estheva_admin/mobile_section/setting/change_password.dart';
+import 'package:estheva_admin/mobile_section/setting/notification_screen.dart';
+import 'package:estheva_admin/mobile_section/setting/support.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:estheva_admin/mobile_section/appointments/appointment_history.dart';
-import 'package:estheva_admin/mobile_section/setting_pages/change_password.dart';
-import 'package:estheva_admin/mobile_section/setting_pages/notification_screen.dart';
-import 'package:estheva_admin/mobile_section/setting_pages/payment_page.dart';
-import 'package:estheva_admin/mobile_section/setting_pages/support.dart';
 import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/widgets/logout_widget.dart';
@@ -59,14 +59,14 @@ class _HistoryPageState extends State<HistoryPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (builder) => AppointmentHistory()));
+                                builder: (builder) => MobileSignupScreen()));
                       },
                       leading: Icon(
                         Icons.post_add,
                         color: appColor,
                       ),
                       title: Text(
-                        "Records",
+                        "Admin Accounts",
                         style: GoogleFonts.workSans(
                             fontWeight: FontWeight.w500, fontSize: 16),
                       ),
@@ -110,33 +110,6 @@ class _HistoryPageState extends State<HistoryPage> {
                           color: borderColor,
                         ),
                       ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (builder) => PaymentPage()));
-                      },
-                      leading: Icon(
-                        Icons.payment,
-                        color: appColor,
-                      ),
-                      title: Text(
-                        "Payment Method",
-                        style: GoogleFonts.workSans(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: appColor,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8),
-                      child: Divider(
-                        color: borderColor,
-                      ),
-                    ),
                     ListTile(
                       onTap: () {
                         Navigator.push(

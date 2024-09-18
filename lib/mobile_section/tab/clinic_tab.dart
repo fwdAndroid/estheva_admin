@@ -105,78 +105,89 @@ class _ClinicTabState extends State<ClinicTab> {
                       fontWeight: FontWeight.w800),
                 ),
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder<Object>(
-                    stream: FirebaseFirestore.instance
-                        .collection("services")
-                        .where("serviceCategory",
-                            isEqualTo: "Body Contouring Packages")
-                        .where("type", isEqualTo: "clinic")
-                        .snapshots(),
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                      if (!snapshot.hasData || snapshot.data == null) {
-                        return Center(child: Text('No Service available'));
-                      }
-                      var snap = snapshot.data;
-                      return ListView.builder(
-                          itemCount: snap.docs.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            var serviceData = snap.docs[index].data();
-                            return SizedBox(
-                              width: 200,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (builder) => ProductDetail(
-                                                description: serviceData[
-                                                    'serviceDescription'],
-                                                discount:
-                                                    serviceData['discount']
-                                                        .toString(),
-                                                photoURL:
-                                                    serviceData['photoURL'],
-                                                uuid: serviceData['uuid'],
-                                                price: serviceData['price']
-                                                    .toString(),
-                                                serviceCategory: serviceData[
-                                                    'serviceCategory'],
-                                                serviceName:
-                                                    serviceData['serviceName'],
-                                                serviceSubCategory: serviceData[
-                                                    'serviceSubCategory'],
-                                              )));
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor: mainBtnColor,
-                                      radius: 35,
-                                      backgroundImage: NetworkImage(
-                                        serviceData['photoURL'],
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory",
+                              isEqualTo: "Body Contouring Packages")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, left: 8, right: 8),
-                                      child: Text(
-                                        serviceData['serviceSubcategory'],
-                                        style: TextStyle(
-                                            color: appColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
                                       ),
-                                    ),
-                                    Center(
-                                      child: Padding(
+                                      Padding(
                                         padding: const EdgeInsets.only(
                                             left: 8.0, top: 8),
                                         child: Container(
@@ -199,13 +210,13 @@ class _ClinicTabState extends State<ClinicTab> {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          });
-                    }),
+                              );
+                            });
+                      }),
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -223,115 +234,117 @@ class _ClinicTabState extends State<ClinicTab> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("services")
-                      .where("serviceCategory", isEqualTo: "IV Drips Therapy")
-                      .where("type", isEqualTo: "clinic")
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No Service available',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }
-
-                    var snap = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: snap.docs.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var serviceData =
-                            snap.docs[index].data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: 200,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => ProductDetail(
-                                            description: serviceData[
-                                                'serviceDescription'],
-                                            discount: serviceData['discount']
-                                                .toString(),
-                                            photoURL: serviceData['photoURL'],
-                                            uuid: serviceData['uuid'],
-                                            price:
-                                                serviceData['price'].toString(),
-                                            serviceCategory:
-                                                serviceData['serviceCategory'],
-                                            serviceName:
-                                                serviceData['serviceName'],
-                                            serviceSubCategory: serviceData[
-                                                'serviceSubCategory'],
-                                          )));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: mainBtnColor,
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                    serviceData['photoURL'],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 8, right: 8),
-                                  child: Text(
-                                    serviceData['serviceSubcategory'],
-                                    style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffD3D3D3),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          serviceData['price'].toString() +
-                                              " AED",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: mainBtnColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory",
+                              isEqualTo: "IV Drips Therapy")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffD3D3D3),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              serviceData['price'].toString() +
+                                                  "AED",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color: mainBtnColor,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            });
+                      }),
                 ),
               ),
               const SizedBox(
@@ -350,116 +363,117 @@ class _ClinicTabState extends State<ClinicTab> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("services")
-                      .where("serviceCategory",
-                          isEqualTo: "IV Drips Therapy Packages")
-                      .where("type", isEqualTo: "clinic")
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No Service available',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }
-
-                    var snap = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: snap.docs.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var serviceData =
-                            snap.docs[index].data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: 200,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => ProductDetail(
-                                            description: serviceData[
-                                                'serviceDescription'],
-                                            discount: serviceData['discount']
-                                                .toString(),
-                                            photoURL: serviceData['photoURL'],
-                                            uuid: serviceData['uuid'],
-                                            price:
-                                                serviceData['price'].toString(),
-                                            serviceCategory:
-                                                serviceData['serviceCategory'],
-                                            serviceName:
-                                                serviceData['serviceName'],
-                                            serviceSubCategory: serviceData[
-                                                'serviceSubCategory'],
-                                          )));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: mainBtnColor,
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                    serviceData['photoURL'],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 8, right: 8),
-                                  child: Text(
-                                    serviceData['serviceSubcategory'],
-                                    style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffD3D3D3),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          serviceData['price'].toString() +
-                                              " AED",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: mainBtnColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory",
+                              isEqualTo: "IV Drips Therapy Packages")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffD3D3D3),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              serviceData['price'].toString() +
+                                                  "AED",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color: mainBtnColor,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            });
+                      }),
                 ),
               ),
               const SizedBox(
@@ -478,115 +492,116 @@ class _ClinicTabState extends State<ClinicTab> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("services")
-                      .where("serviceCategory", isEqualTo: "Health Checkup")
-                      .where("type", isEqualTo: "clinic")
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No Service available',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }
-
-                    var snap = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: snap.docs.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var serviceData =
-                            snap.docs[index].data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: 200,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => ProductDetail(
-                                            description: serviceData[
-                                                'serviceDescription'],
-                                            discount: serviceData['discount']
-                                                .toString(),
-                                            photoURL: serviceData['photoURL'],
-                                            uuid: serviceData['uuid'],
-                                            price:
-                                                serviceData['price'].toString(),
-                                            serviceCategory:
-                                                serviceData['serviceCategory'],
-                                            serviceName:
-                                                serviceData['serviceName'],
-                                            serviceSubCategory: serviceData[
-                                                'serviceSubCategory'],
-                                          )));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: mainBtnColor,
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                    serviceData['photoURL'],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 8, right: 8),
-                                  child: Text(
-                                    serviceData['serviceSubcategory'],
-                                    style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffD3D3D3),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          serviceData['price'].toString() +
-                                              " AED",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: mainBtnColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory", isEqualTo: "Health Checkup")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffD3D3D3),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              serviceData['price'].toString() +
+                                                  "AED",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color: mainBtnColor,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            });
+                      }),
                 ),
               ),
               const SizedBox(
@@ -602,120 +617,116 @@ class _ClinicTabState extends State<ClinicTab> {
                       fontWeight: FontWeight.w800),
                 ),
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("services")
-                      .where("serviceCategory", isEqualTo: "Physiotherapy")
-                      .where("type", isEqualTo: "clinic")
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No Service available',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }
-
-                    var snap = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: snap.docs.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var serviceData =
-                            snap.docs[index].data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: 200,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => ProductDetail(
-                                            description: serviceData[
-                                                'serviceDescription'],
-                                            discount: serviceData['discount']
-                                                .toString(),
-                                            photoURL: serviceData['photoURL'],
-                                            uuid: serviceData['uuid'],
-                                            price:
-                                                serviceData['price'].toString(),
-                                            serviceCategory:
-                                                serviceData['serviceCategory'],
-                                            serviceName:
-                                                serviceData['serviceName'],
-                                            serviceSubCategory: serviceData[
-                                                'serviceSubCategory'],
-                                          )));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: mainBtnColor,
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                    serviceData['photoURL'],
-                                  ),
-                                ),
-                                // Image.network(
-                                //   serviceData['photoURL'],
-                                //   width: MediaQuery.of(context).size.width,
-                                //   height: 75,
-                                // ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 8, right: 8),
-                                  child: Text(
-                                    serviceData['serviceSubcategory'],
-                                    style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffD3D3D3),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          serviceData['price'].toString() +
-                                              " AED",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: mainBtnColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory", isEqualTo: "Physiotherapy")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffD3D3D3),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              serviceData['price'].toString() +
+                                                  "AED",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color: mainBtnColor,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            });
+                      }),
                 ),
               ),
               const SizedBox(
@@ -734,115 +745,116 @@ class _ClinicTabState extends State<ClinicTab> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("services")
-                      .where("serviceCategory", isEqualTo: "Aesthetic")
-                      .where("type", isEqualTo: "clinic")
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No Service available',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }
-
-                    var snap = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: snap.docs.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var serviceData =
-                            snap.docs[index].data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: 200,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => ProductDetail(
-                                            description: serviceData[
-                                                'serviceDescription'],
-                                            discount: serviceData['discount']
-                                                .toString(),
-                                            photoURL: serviceData['photoURL'],
-                                            uuid: serviceData['uuid'],
-                                            price:
-                                                serviceData['price'].toString(),
-                                            serviceCategory:
-                                                serviceData['serviceCategory'],
-                                            serviceName:
-                                                serviceData['serviceName'],
-                                            serviceSubCategory: serviceData[
-                                                'serviceSubCategory'],
-                                          )));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: mainBtnColor,
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                    serviceData['photoURL'],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 8, right: 8),
-                                  child: Text(
-                                    serviceData['serviceSubcategory'],
-                                    style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffD3D3D3),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          serviceData['price'].toString() +
-                                              " AED",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: mainBtnColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory", isEqualTo: "Aesthetic")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffD3D3D3),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              serviceData['price'].toString() +
+                                                  "AED",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color: mainBtnColor,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            });
+                      }),
                 ),
               ),
               const SizedBox(
@@ -861,115 +873,117 @@ class _ClinicTabState extends State<ClinicTab> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                height: 160,
-                width: MediaQuery.of(context).size.width,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("services")
-                      .where("serviceCategory", isEqualTo: "Hair Transplant")
-                      .where("type", isEqualTo: "clinic")
-                      .snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No Service available',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      );
-                    }
-
-                    var snap = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: snap.docs.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var serviceData =
-                            snap.docs[index].data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: 200,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => ProductDetail(
-                                            description: serviceData[
-                                                'serviceDescription'],
-                                            discount: serviceData['discount']
-                                                .toString(),
-                                            photoURL: serviceData['photoURL'],
-                                            uuid: serviceData['uuid'],
-                                            price:
-                                                serviceData['price'].toString(),
-                                            serviceCategory:
-                                                serviceData['serviceCategory'],
-                                            serviceName:
-                                                serviceData['serviceName'],
-                                            serviceSubCategory: serviceData[
-                                                'serviceSubCategory'],
-                                          )));
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: mainBtnColor,
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                    serviceData['photoURL'],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 8, right: 8),
-                                  child: Text(
-                                    serviceData['serviceSubcategory'],
-                                    style: TextStyle(
-                                      color: appColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, top: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffD3D3D3),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          serviceData['price'].toString() +
-                                              " AED",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: mainBtnColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 165,
+                  width: MediaQuery.of(context).size.width,
+                  child: StreamBuilder<Object>(
+                      stream: FirebaseFirestore.instance
+                          .collection("services")
+                          .where("serviceCategory",
+                              isEqualTo: "Hair Transplant")
+                          .where("type", isEqualTo: "clinic")
+                          .snapshots(),
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          return Center(child: Text('No Service available'));
+                        }
+                        var snap = snapshot.data;
+                        return ListView.builder(
+                            itemCount: snap.docs.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              var serviceData = snap.docs[index].data();
+                              return SizedBox(
+                                width: 200,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) => ProductDetail(
+                                                  description: serviceData[
+                                                      'serviceDescription'],
+                                                  discount:
+                                                      serviceData['discount']
+                                                          .toString(),
+                                                  photoURL:
+                                                      serviceData['photoURL'],
+                                                  uuid: serviceData['uuid'],
+                                                  price: serviceData['price']
+                                                      .toString(),
+                                                  serviceCategory: serviceData[
+                                                      'serviceCategory'],
+                                                  serviceName: serviceData[
+                                                      'serviceName'],
+                                                  serviceSubCategory:
+                                                      serviceData[
+                                                          'serviceSubCategory'],
+                                                )));
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            height: 80,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            serviceData['photoURL'],
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, left: 8, right: 8),
+                                        child: Text(
+                                          serviceData['serviceSubcategory'],
+                                          style: TextStyle(
+                                              color: appColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffD3D3D3),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              serviceData['price'].toString() +
+                                                  "AED",
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color: mainBtnColor,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              );
+                            });
+                      }),
                 ),
               ),
             ],
