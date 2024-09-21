@@ -1,1 +1,37 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"estheva-5127e","appId":"1:934119296637:android:bcd0961fba48527b2e2b14","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"estheva-5127e","configurations":{"android":"1:934119296637:android:bcd0961fba48527b2e2b14","web":"1:934119296637:web:8f6d1fdc1818e2c42e2b14"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "estheva-5127e",
+          "appId": "1:934119296637:android:bcd0961fba48527b2e2b14",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "estheva-5127e",
+          "configurations": {
+            "android": "1:934119296637:android:bcd0961fba48527b2e2b14",
+            "web": "1:934119296637:web:8f6d1fdc1818e2c42e2b14"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "site": "esthevaadmin",
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
