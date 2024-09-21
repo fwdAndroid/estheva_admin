@@ -54,78 +54,81 @@ class _DoctorsState extends State<Doctors> {
                     if (!snapshot.hasData || snapshot.data == null) {
                       return Center(child: Text('No data available'));
                     }
+
                     var snap = snapshot.data;
-                    return GridView.builder(
-                      scrollDirection:
-                          Axis.vertical, // Keep the scroll direction vertical
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, // Number of columns in the grid
-                        crossAxisSpacing: 10, // Spacing between columns
-                        mainAxisSpacing: 10, // Spacing between rows
-                        childAspectRatio:
-                            0.8, // Adjust this ratio to fit the design
-                      ),
-                      itemCount: snap
-                          .docs.length, // Replace with your dynamic list length
-                      itemBuilder: (context, index) {
-                        var doctorData = snap.docs[index].data();
-                        return Card(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => WebDoctorDetail(
-                                            price:
-                                                doctorData['price'].toString(),
-                                            experience:
-                                                doctorData['experience'],
-                                            description:
-                                                doctorData['doctorDescription'],
-                                            name: doctorData['doctorName'],
-                                            photo: doctorData['photoURL'],
-                                            uuid: doctorData['uuid'],
-                                          )));
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment
-                                  .center, // Center the content vertically
-                              crossAxisAlignment: CrossAxisAlignment
-                                  .center, // Center the content horizontally
-                              children: [
-                                Container(
-                                  height: 100,
-                                  child: Image.network(
-                                    doctorData['photoURL'],
-                                    width: 100,
+                    return LayoutBuilder(builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      int columns = (constraints.maxWidth / 300)
+                          .floor(); // Assuming each item has a width of 200
+                      return GridView.builder(
+                        scrollDirection:
+                            Axis.vertical, // Keep the scroll direction vertical
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: columns,
+                          crossAxisSpacing: 8.0,
+                          mainAxisSpacing: 8.0,
+                        ),
+                        itemCount: snap.docs
+                            .length, // Replace with your dynamic list length
+                        itemBuilder: (context, index) {
+                          var doctorData = snap.docs[index].data();
+                          return Card(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (builder) => WebDoctorDetail(
+                                              price: doctorData['price']
+                                                  .toString(),
+                                              experience:
+                                                  doctorData['experience'],
+                                              description: doctorData[
+                                                  'doctorDescription'],
+                                              name: doctorData['doctorName'],
+                                              photo: doctorData['photoURL'],
+                                              uuid: doctorData['uuid'],
+                                            )));
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .center, // Center the content vertically
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, // Center the content horizontally
+                                children: [
+                                  Container(
                                     height: 100,
+                                    child: Image.network(
+                                      doctorData['photoURL'],
+                                      width: 100,
+                                      height: 100,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 4.0, top: 8, right: 4),
-                                  child: Text(
-                                    doctorData['doctorName'],
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12, color: appColor),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4.0, top: 8, right: 4),
+                                    child: Text(
+                                      doctorData['doctorName'],
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, color: appColor),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 4.0, top: 8, right: 4),
-                                  child: Text(
-                                    doctorData['doctorCategory'],
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12, color: appColor),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4.0, top: 8, right: 4),
+                                    child: Text(
+                                      doctorData['doctorCategory'],
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, color: appColor),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
+                          );
+                        },
+                      );
+                    });
                   }),
             ),
           ],
