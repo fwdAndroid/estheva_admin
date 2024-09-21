@@ -1,35 +1,32 @@
 import 'package:estheva_admin/utils/colors.dart';
+import 'package:estheva_admin/website_section/web_add_services/edit_doctor_web.dart';
 import 'package:estheva_admin/website_section/web_add_services/edit_service_web.dart';
-import 'package:estheva_admin/website_section/web_widgets/product_delete_widget.dart';
+import 'package:estheva_admin/website_section/web_widgets/doctor_web_delete_widget.dart';
 import 'package:estheva_admin/widgets/delete_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class WebProductDetail extends StatefulWidget {
-  final discount;
-  final photoURL;
+class WebDoctorDetail extends StatefulWidget {
+  final photo;
   final price;
-  final serviceCategory;
-  final serviceSubCategory;
-  final serviceName;
+  final experience;
+  final name;
   final description;
   final uuid;
-  const WebProductDetail(
+  const WebDoctorDetail(
       {super.key,
       required this.description,
-      required this.discount,
-      required this.photoURL,
+      required this.photo,
       required this.price,
-      required this.serviceCategory,
-      required this.serviceName,
-      required this.serviceSubCategory,
+      required this.experience,
+      required this.name,
       required this.uuid});
 
   @override
-  State<WebProductDetail> createState() => _WebProductDetailState();
+  State<WebDoctorDetail> createState() => _WebDoctorDetailState();
 }
 
-class _WebProductDetailState extends State<WebProductDetail> {
+class _WebDoctorDetailState extends State<WebDoctorDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +37,12 @@ class _WebProductDetailState extends State<WebProductDetail> {
             child: Row(
               children: [
                 FormSection(
+                  name: widget.name,
+                  experience: widget.experience,
                   uuid: widget.uuid,
-                  serviceCategory: widget.serviceCategory,
-                  description: widget.description,
-                  discount: widget.discount.toString(),
-                  photoURL: widget.photoURL,
+                  photo: widget.photo,
                   price: widget.price.toString(),
-                  serviceName: widget.serviceName,
-                  serviceSubCategory: widget.serviceSubCategory,
+                  description: widget.description,
                 ),
                 _ImageSection(),
               ],
@@ -60,24 +55,20 @@ class _WebProductDetailState extends State<WebProductDetail> {
 }
 
 class FormSection extends StatefulWidget {
-  final discount;
-  final photoURL;
+  final photo;
   final price;
-  final serviceCategory;
-  final serviceSubCategory;
-  final serviceName;
+  final experience;
+  final name;
   final description;
   final uuid;
 
   const FormSection(
       {Key? key,
       required this.description,
-      required this.discount,
-      required this.photoURL,
+      required this.photo,
       required this.price,
-      required this.serviceCategory,
-      required this.serviceName,
-      required this.serviceSubCategory,
+      required this.experience,
+      required this.name,
       required this.uuid})
       : super(key: key);
 
@@ -94,7 +85,7 @@ class FormSectionState extends State<FormSection> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.network(
-            widget.photoURL,
+            widget.photo,
             height: 200,
             fit: BoxFit.cover,
             width: MediaQuery.of(context).size.width,
@@ -102,7 +93,7 @@ class FormSectionState extends State<FormSection> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              widget.serviceName,
+              widget.name,
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -133,18 +124,11 @@ class FormSectionState extends State<FormSection> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.discount.toString() + "%",
+                        widget.price.toString() + "%",
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-                        ),
-                      ),
-                      Text(
-                        widget.price.toString() + "AED",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: Colors.black54,
                         ),
                       ),
                     ],
@@ -161,7 +145,7 @@ class FormSectionState extends State<FormSection> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return ProductDeleteWidget(uuid: widget.uuid);
+                      return DoctorDeleteWebWidget(uuid: widget.uuid);
                     },
                   );
                 },
@@ -180,12 +164,12 @@ class FormSectionState extends State<FormSection> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (builder) => EditServiceWeb(
+                          builder: (builder) => EditDoctorWeb(
                                 uuid: widget.uuid,
                               )));
                 },
                 child: Text(
-                  "Edit Profile",
+                  "Edit Doctor",
                   style: TextStyle(color: colorwhite),
                 ),
                 style: ElevatedButton.styleFrom(
