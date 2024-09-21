@@ -50,13 +50,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBAWcpNVIosQau0BTJiPDMrfE1wV4_KgNo',
-    appId: '1:913992234259:web:36ef6e1784e31db583d6e6',
-    messagingSenderId: '913992234259',
-    projectId: 'estheva-f2ab9',
-    authDomain: 'estheva-f2ab9.firebaseapp.com',
-    storageBucket: 'estheva-f2ab9.appspot.com',
-    measurementId: 'G-YVV5YHYQ52',
+    apiKey: 'AIzaSyBH-Afd_JNXfgnT2CZ1d_K9QR1ICV3RNr4',
+    appId: '1:934119296637:web:8f6d1fdc1818e2c42e2b14',
+    messagingSenderId: '934119296637',
+    projectId: 'estheva-5127e',
+    authDomain: 'estheva-5127e.firebaseapp.com',
+    storageBucket: 'estheva-5127e.appspot.com',
+    measurementId: 'G-K3LRCMTT1N',
   );
 
   static const FirebaseOptions android = FirebaseOptions(

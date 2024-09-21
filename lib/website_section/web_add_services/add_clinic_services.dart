@@ -188,7 +188,7 @@ class _FormSectionState extends State<_FormSection> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Add Home Services",
+              "Add Clinic Services",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 25.63),
             ),
             GestureDetector(

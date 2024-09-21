@@ -1,3 +1,5 @@
+import 'package:estheva_admin/responsive_layout.dart';
+import 'package:estheva_admin/website_section/web_auth/web_login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:estheva_admin/firebase_options.dart';
@@ -38,6 +40,9 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SplashScreen());
+        home: ResponsiveLayout(
+          webScreenLayout: SignInPage(),
+          mobileScreenLayout: SplashScreen(),
+        ));
   }
 }

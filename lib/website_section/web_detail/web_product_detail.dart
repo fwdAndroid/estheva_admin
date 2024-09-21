@@ -1,4 +1,5 @@
 import 'package:estheva_admin/utils/colors.dart';
+import 'package:estheva_admin/website_section/web_add_services/edit_service_web.dart';
 import 'package:estheva_admin/widgets/delete_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -175,12 +176,12 @@ class FormSectionState extends State<FormSection> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (builder) => EditServices(
-                  //               uuid: widget.uuid,
-                  //             )));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => EditServiceWeb(
+                                uuid: widget.uuid,
+                              )));
                 },
                 child: Text(
                   "Edit Profile",
