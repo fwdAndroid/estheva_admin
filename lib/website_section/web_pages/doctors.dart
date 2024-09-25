@@ -26,16 +26,6 @@ class _DoctorsState extends State<Doctors> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (builder) => AddDoctorWeb()));
           }),
-      appBar: AppBar(
-        backgroundColor: mainBtnColor,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text(
-          "Medical Consultation",
-          style: GoogleFonts.poppins(
-              fontSize: 18, color: colorwhite, fontWeight: FontWeight.bold),
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

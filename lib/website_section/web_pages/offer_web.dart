@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/website_section/web_add_services/web_add_offers.dart';
+import 'package:estheva_admin/website_section/web_detail/offer_details_web.dart';
 import 'package:flutter/material.dart';
 
 class OfferWeb extends StatefulWidget {
@@ -55,17 +56,16 @@ class _OfferWebState extends State<OfferWeb> {
                                 width: 200,
                                 child: GestureDetector(
                                   onTap: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (builder) =>
-                                    //             WebOfferDetail(
-                                    //               photoURL:
-                                    //                   serviceData['photos'],
-                                    //               uuid: serviceData['uuid'],
-                                    //               serviceName: serviceData[
-                                    //                   'offerDetail'],
-                                    //             )));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (builder) =>
+                                                OfferDetailsWeb(
+                                                  photo: serviceData['photos'],
+                                                  uuid: serviceData['uuid'],
+                                                  name: serviceData[
+                                                      'offerDetail'],
+                                                )));
                                   },
                                   child: Column(
                                     crossAxisAlignment:
