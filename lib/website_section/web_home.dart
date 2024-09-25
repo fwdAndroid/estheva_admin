@@ -7,6 +7,7 @@ import 'package:estheva_admin/website_section/web_pages/clinic_services.dart';
 import 'package:estheva_admin/website_section/web_pages/complaint_screen.dart';
 import 'package:estheva_admin/website_section/web_pages/doctors.dart';
 import 'package:estheva_admin/website_section/web_pages/home_services.dart';
+import 'package:estheva_admin/website_section/web_pages/offer_web.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -140,6 +141,10 @@ class ExampleSidebarX extends StatelessWidget {
           label: 'Appointment',
         ),
         SidebarXItem(
+          icon: Icons.local_offer_sharp,
+          label: 'Offers',
+        ),
+        SidebarXItem(
           icon: Icons.admin_panel_settings,
           label: 'Admin Account',
         ),
@@ -181,8 +186,10 @@ class _ScreensExample extends StatelessWidget {
           case 5:
             return const AppointmentWeb();
           case 6:
-            return const AdminAccountScreen();
+            return const OfferWeb();
           case 7:
+            return const AdminAccountScreen();
+          case 8:
             return AlertDialog(
               title: const Text('Logout Alert'),
               content: SingleChildScrollView(
