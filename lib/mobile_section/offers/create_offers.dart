@@ -10,6 +10,7 @@ import 'package:estheva_admin/mobile_section/main/main_dashboard.dart';
 import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/utils/image_utils.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateOffers extends StatefulWidget {
   const CreateOffers({super.key});
@@ -26,6 +27,8 @@ class _CreateOffersState extends State<CreateOffers> {
 
   Uint8List? _image;
   bool isAdded = false;
+
+  var uuid = Uuid().v4();
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +101,9 @@ class _CreateOffersState extends State<CreateOffers> {
                           );
                           await FirebaseFirestore.instance
                               .collection("offers")
-                              .doc("uid")
+                              .doc(uuid)
                               .set({
+                            "uuid": uuid,
                             "offerDetail": descriptionController.text,
                             "photos": photoURL
                           });
