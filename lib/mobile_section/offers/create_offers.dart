@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:estheva_admin/database/storage_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -89,12 +90,18 @@ class _CreateOffersState extends State<CreateOffers> {
                           setState(() {
                             isAdded = true;
                           });
-                          print("asdsa");
+
+                          String photoURL =
+                              await StorageMethods().uploadImageToStorage(
+                            'offers',
+                            _image!,
+                          );
                           await FirebaseFirestore.instance
                               .collection("offers")
                               .doc("uid")
                               .set({
                             "offerDetail": descriptionController.text,
+                            "photos": photoURL
                           });
                           setState(() {
                             isAdded = false;
