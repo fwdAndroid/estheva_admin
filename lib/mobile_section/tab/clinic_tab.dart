@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:estheva_admin/mobile_section/details/offer_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -72,47 +73,59 @@ class _ClinicTabState extends State<ClinicTab> {
                             autoPlay: true,
                           ),
                           items: imgList.map((item) {
-                            return Container(
-                              margin: EdgeInsets.all(5.0),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
-                                child: Stack(
-                                  children: <Widget>[
-                                    // Display the image
-                                    Image.network(item['photos']!,
-                                        fit: BoxFit.cover, width: 1000.0),
-                                    // Display the gradient overlay
-                                    Positioned(
-                                      bottom: 0.0,
-                                      left: 0.0,
-                                      right: 0.0,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color.fromARGB(200, 0, 0, 0),
-                                              Color.fromARGB(0, 0, 0, 0)
-                                            ],
-                                            begin: Alignment.bottomCenter,
-                                            end: Alignment.topCenter,
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (builder) => OfferDetail(
+                                              offerDetail: item['offerDetail'],
+                                              uuid: item['uuid'],
+                                              photos: item['photos'],
+                                            )));
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(5.0),
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.0)),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      // Display the image
+                                      Image.network(item['photos']!,
+                                          fit: BoxFit.cover, width: 1000.0),
+                                      // Display the gradient overlay
+                                      Positioned(
+                                        bottom: 0.0,
+                                        left: 0.0,
+                                        right: 0.0,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color.fromARGB(200, 0, 0, 0),
+                                                Color.fromARGB(0, 0, 0, 0)
+                                              ],
+                                              begin: Alignment.bottomCenter,
+                                              end: Alignment.topCenter,
+                                            ),
                                           ),
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10.0, horizontal: 20.0),
-                                        // Display the title from Firestore
-                                        child: Text(
-                                          item[
-                                              'offerDetail']!, // Title of the item
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold,
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 20.0),
+                                          // Display the title from Firestore
+                                          child: Text(
+                                            item[
+                                                'offerDetail']!, // Title of the item
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
