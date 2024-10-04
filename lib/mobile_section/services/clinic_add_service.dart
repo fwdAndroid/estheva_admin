@@ -43,7 +43,6 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
       'NAD+ IV Drips Therapy',
       'Detox IV Drips',
       'Anti-Aging IV Drips Therapy',
-      'Detox IV Drips',
       'Hydration IV Drips',
       'Iron Drip Therapy',
       "NAD+ IV Drips Therapy",

@@ -74,7 +74,6 @@ class _FormSectionState extends State<_FormSection> {
       'NAD+ IV Drips Therapy',
       'Detox IV Drips',
       'Anti-Aging IV Drips Therapy',
-      'Detox IV Drips',
       'Hydration IV Drips',
       'Iron Drip Therapy',
       "NAD+ IV Drips Therapy",
@@ -339,7 +338,7 @@ class _FormSectionState extends State<_FormSection> {
                         });
 
                         await Database().addServices(
-                            type: "home",
+                            type: "clinic",
                             serviceDescription:
                                 descriptionController.text.trim(),
                             serviceCategory: _selectedCategory!,
