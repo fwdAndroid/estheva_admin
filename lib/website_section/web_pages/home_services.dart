@@ -29,7 +29,7 @@ class _HomeServicesState extends State<HomeServices> {
         backgroundColor: colorwhite,
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
