@@ -56,6 +56,7 @@ class _AddServicesState extends State<AddServices> {
       'Cardiac Risk Blood Test',
       'Female Hormone Profile',
       'Full Male Health Checkup',
+      'Obesity Risk Profile',
       'STD Profile by PRC',
       'STD Risk Assessment'
     ],

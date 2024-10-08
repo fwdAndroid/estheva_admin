@@ -85,7 +85,8 @@ class _FormSectionState extends State<_FormSection> {
       'Female Hormone Profile',
       'Full Male Health Checkup',
       'STD Profile by PRC',
-      'STD Risk Assessment'
+      'STD Risk Assessment',
+      'Obesity Risk Profile',
     ],
     'Physiotherapy': [
       'Physiotherapy',

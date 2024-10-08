@@ -28,7 +28,7 @@ class _ClinicServicesState extends State<ClinicServices> {
             }),
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -96,19 +96,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -116,6 +118,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -123,25 +126,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -226,19 +234,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -246,6 +256,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -253,25 +264,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -356,19 +372,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -376,6 +394,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -383,25 +402,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -485,19 +509,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -505,6 +531,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -512,25 +539,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -611,19 +643,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -631,6 +665,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -638,25 +673,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -740,19 +780,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -760,6 +802,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -767,25 +810,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -870,19 +918,21 @@ class _ClinicServicesState extends State<ClinicServices> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            height: 80,
-                                            width: 90,
-                                            fit: BoxFit.cover,
-                                            serviceData['photoURL'],
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              height: 80,
+                                              width: 90,
+                                              fit: BoxFit.cover,
+                                              serviceData['photoURL'],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -890,6 +940,7 @@ class _ClinicServicesState extends State<ClinicServices> {
                                         padding: const EdgeInsets.only(
                                             top: 8.0, left: 8, right: 8),
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           serviceData['serviceSubcategory'],
                                           style: TextStyle(
                                               color: appColor,
@@ -897,25 +948,30 @@ class _ClinicServicesState extends State<ClinicServices> {
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, top: 8),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffD3D3D3),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              serviceData['price'].toString() +
-                                                  "AED",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  color: mainBtnColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                      Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xffD3D3D3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                serviceData['price']
+                                                        .toString() +
+                                                    " AED",
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    color: mainBtnColor,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ),
