@@ -39,6 +39,7 @@ class _AddServicesState extends State<AddServices> {
       'Hydration IV Drips',
       'Iron Drip Therapy',
       "NAD+ IV Drips Therapy",
+      "Sliming IV Drip Therapy"
     ],
     'IV Drips Therapy Packages': [
       'Anti-Aging IV Drips Packages',
@@ -58,7 +59,8 @@ class _AddServicesState extends State<AddServices> {
       'Full Male Health Checkup',
       'Obesity Risk Profile',
       'STD Profile by PRC',
-      'STD Risk Assessment'
+      'STD Risk Assessment',
+      'Obesity Degree Profile',
     ],
     'Physiotherapy': [
       'Physiotherapy',

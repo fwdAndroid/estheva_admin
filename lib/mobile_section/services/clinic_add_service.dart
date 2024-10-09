@@ -46,6 +46,7 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
       'Hydration IV Drips',
       'Iron Drip Therapy',
       "NAD+ IV Drips Therapy",
+      "Sliming IV Drip Therapy"
     ],
 
     //Done
@@ -70,7 +71,8 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
       'Bio Full Body Health Checkup Women',
       'Obesity Risk Profile',
       'STD Profile by PRC',
-      'STD Risk Assessment'
+      'STD Risk Assessment',
+      'Obesity Degree Profile'
     ],
 
     //Done

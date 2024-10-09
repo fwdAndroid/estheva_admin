@@ -77,6 +77,7 @@ class _FormSectionState extends State<_FormSection> {
       'Hydration IV Drips',
       'Iron Drip Therapy',
       "NAD+ IV Drips Therapy",
+      "Sliming IV Drip Therapy"
     ],
 
     //Done
@@ -101,7 +102,8 @@ class _FormSectionState extends State<_FormSection> {
       'Bio Full Body Health Checkup Women',
       'Obesity Risk Profile',
       'STD Profile by PRC',
-      'STD Risk Assessment'
+      'STD Risk Assessment',
+      'Obesity Degree Profile'
     ],
 
     //Done
