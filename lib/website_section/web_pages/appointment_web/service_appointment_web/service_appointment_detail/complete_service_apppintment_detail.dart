@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:estheva_admin/mobile_section/offers/create_offers.dart';
+import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/website_section/web_home.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +103,7 @@ class ImageSelection extends StatelessWidget {
   }
 }
 
-class FormSelection extends StatelessWidget {
+class FormSelection extends StatefulWidget {
   final appointmentDate;
   final appointmentEndTime;
   final appointmentId;
@@ -132,6 +135,34 @@ class FormSelection extends StatelessWidget {
     required this.serviceName,
     required this.status,
   });
+
+  @override
+  State<FormSelection> createState() => _FormSelectionState();
+}
+
+class _FormSelectionState extends State<FormSelection> {
+  String? selectedDoctor;
+  List<String> doctorNames = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDoctorNames();
+  }
+
+  Future<void> fetchDoctorNames() async {
+    // Fetch the data from Firestore
+    final QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('doctors').get();
+
+    // Extract doctor names
+    final List<String> names =
+        querySnapshot.docs.map((doc) => doc['doctorName'] as String).toList();
+
+    setState(() {
+      doctorNames = names;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +208,8 @@ class FormSelection extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              appointmentDate, // Display the formatted date
+                              widget
+                                  .appointmentDate, // Display the formatted date
                               style: GoogleFonts.poppins(
                                 color: textColor,
                                 fontSize: 12,
@@ -198,7 +230,7 @@ class FormSelection extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              appointmentStartTime,
+                              widget.appointmentStartTime,
                               style: GoogleFonts.poppins(
                                 color: Colors.black,
                                 fontSize: 12,
@@ -247,7 +279,7 @@ class FormSelection extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              patientName,
+                              widget.patientName,
                               style: GoogleFonts.poppins(
                                 color: dateColor,
                                 fontSize: 14,
@@ -268,28 +300,7 @@ class FormSelection extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              gender,
-                              style: GoogleFonts.poppins(
-                                color: dateColor,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0, left: 8),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Service Description:     ", // Display the formatted date
-                              style: GoogleFonts.poppins(
-                                color: appColor,
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              serviceDescription,
+                              widget.gender,
                               style: GoogleFonts.poppins(
                                 color: dateColor,
                                 fontSize: 14,
@@ -303,6 +314,68 @@ class FormSelection extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 700,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4.0, left: 8),
+                child: Column(
+                  children: [
+                    Text(
+                      "Service Description:     ", // Display the formatted date
+                      style: GoogleFonts.poppins(
+                        color: appColor,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      widget.serviceDescription,
+                      style: GoogleFonts.poppins(
+                        color: dateColor,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: doctorNames.isEmpty
+                    ? CircularProgressIndicator() // Show a loading indicator if data is still being fetched
+                    : DropdownButton<String>(
+                        isExpanded: true,
+                        hint: Text('Select Doctor'),
+                        value: selectedDoctor,
+                        onChanged: (newValue) {
+                          setState(() {
+                            selectedDoctor = newValue;
+                          });
+                        },
+                        items: doctorNames.map((doctor) {
+                          return DropdownMenuItem(
+                            value: doctor,
+                            child: Text(doctor),
+                          );
+                        }).toList(),
+                      ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SaveButton(
+                  title: "Change Doctor",
+                  onTap: () async {
+                    await FirebaseFirestore.instance
+                        .collection("appointment")
+                        .doc(widget.appointmentId)
+                        .update({"doctorName": selectedDoctor});
+                    showMessageBar(
+                        "Doctor of Current Appointment is Changed", context);
+                    Navigator.pop(context);
+                  },
+                  color: mainBtnColor),
+            )
           ],
         ),
       ),

@@ -54,7 +54,7 @@ class _ServiceAppointmentUpcomingState
                                 context,
                                 MaterialPageRoute(
                                     builder: (builder) =>
-                                        ServiceAppointCompleteDetail(
+                                        ServueAppointmentUpcommingMobile(
                                           gender: serviceData['gender'],
                                           serviceCategory:
                                               serviceData['serviceCategory'],
