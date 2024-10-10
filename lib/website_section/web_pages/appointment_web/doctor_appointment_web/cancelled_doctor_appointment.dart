@@ -17,6 +17,7 @@ class _CancelDoctorAppointmentWebState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: StreamBuilder<Object>(
           stream: FirebaseFirestore.instance
               .collection("doctor_appointment")

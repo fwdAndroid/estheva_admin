@@ -13,6 +13,7 @@ class _DoctorAppointmentWebState extends State<DoctorAppointmentWeb> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

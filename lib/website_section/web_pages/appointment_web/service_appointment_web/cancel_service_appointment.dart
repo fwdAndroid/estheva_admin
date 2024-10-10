@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estheva_admin/utils/colors.dart';
+import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/service_appointment_detail/cancel_service_appointment_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,36 +41,36 @@ class _CancelServiceAppointmentWebState
                     child: ListTile(
                       trailing: TextButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (builder) =>
-                            //             ServiceAppointUpcommingCompletedDetailWeb(
-                            //               gender: serviceData['gender'],
-                            //               serviceCategory:
-                            //                   serviceData['serviceCategory'],
-                            //               appointmentDate:
-                            //                   serviceData['appointmentDate'],
-                            //               serviceDescription:
-                            //                   serviceData['serviceDescription'],
-                            //               appointmentEndTime:
-                            //                   serviceData['appointmentEndTime'],
-                            //               serviceName:
-                            //                   serviceData['serviceName'],
-                            //               appointmentId:
-                            //                   serviceData['appointmentId'],
-                            //               appointmentStartTime: serviceData[
-                            //                   'appointmentStartTime'],
-                            //               doctorName: serviceData['doctorName'],
-                            //               patientContact:
-                            //                   serviceData['patientContact'],
-                            //               patientName:
-                            //                   serviceData['patientName'],
-                            //               status: serviceData['status'],
-                            //               patientUid: serviceData['patientUid'],
-                            //               price:
-                            //                   serviceData['price'].toString(),
-                            //             )));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (builder) =>
+                                        CancelAppointServiceWebDetail(
+                                          gender: serviceData['gender'],
+                                          serviceCategory:
+                                              serviceData['serviceCategory'],
+                                          appointmentDate:
+                                              serviceData['appointmentDate'],
+                                          serviceDescription:
+                                              serviceData['serviceDescription'],
+                                          appointmentEndTime:
+                                              serviceData['appointmentEndTime'],
+                                          serviceName:
+                                              serviceData['serviceName'],
+                                          appointmentId:
+                                              serviceData['appointmentId'],
+                                          appointmentStartTime: serviceData[
+                                              'appointmentStartTime'],
+                                          doctorName: serviceData['doctorName'],
+                                          patientContact:
+                                              serviceData['patientContact'],
+                                          patientName:
+                                              serviceData['patientName'],
+                                          status: serviceData['status'],
+                                          patientUid: serviceData['patientUid'],
+                                          price:
+                                              serviceData['price'].toString(),
+                                        )));
                           },
                           child: Text("View")),
                       title: Column(
