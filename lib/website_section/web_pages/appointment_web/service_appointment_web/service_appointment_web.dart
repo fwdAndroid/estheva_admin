@@ -1,24 +1,25 @@
-import 'package:estheva_admin/website_section/web_pages/appointment_web/doctor_appointment_web/doctor_appointment_web.dart';
-import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/service_appointment_web.dart';
+import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/cancel_service_appointment.dart';
+import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/upcomming_service_appointment.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentWeb extends StatefulWidget {
-  const AppointmentWeb({super.key});
+class ServiceAppointmentWeb extends StatefulWidget {
+  const ServiceAppointmentWeb({super.key});
 
   @override
-  State<AppointmentWeb> createState() => _AppointmentWebState();
+  State<ServiceAppointmentWeb> createState() => _ServiceAppointmentWebState();
 }
 
-class _AppointmentWebState extends State<AppointmentWeb> {
+class _ServiceAppointmentWebState extends State<ServiceAppointmentWeb> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
               child: Image.asset(
-            "assets/logo.png",
+            "assets/newlogo.png",
             height: 200,
           )),
           Row(
@@ -33,18 +34,19 @@ class _AppointmentWebState extends State<AppointmentWeb> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (builder) => DoctorAppointmentWeb()));
+                              builder: (builder) =>
+                                  UpcomingServiceAppointmentWeb()));
                     },
                     child: Card(
                       child: Column(
                         children: [
                           Image.asset(
-                            "assets/doctor.png",
+                            "assets/logo.png",
                             height: 170,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Doctor Appointment"),
+                            child: Text("Upcoming Appointment"),
                           ),
                         ],
                       ),
@@ -61,18 +63,19 @@ class _AppointmentWebState extends State<AppointmentWeb> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (builder) => ServiceAppointmentWeb()));
+                              builder: (builder) =>
+                                  CancelServiceAppointmentWeb()));
                     },
                     child: Card(
                       child: Column(
                         children: [
                           Image.asset(
-                            "assets/newlogo.png",
+                            "assets/logo.png",
                             height: 170,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Service Appointment"),
+                            child: Text("Cancel Appointment"),
                           ),
                         ],
                       ),

@@ -1,15 +1,15 @@
-import 'package:estheva_admin/website_section/web_pages/appointment_web/doctor_appointment_web/doctor_appointment_web.dart';
-import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/service_appointment_web.dart';
+import 'package:estheva_admin/website_section/web_pages/appointment_web/doctor_appointment_web/cancelled_doctor_appointment.dart';
+import 'package:estheva_admin/website_section/web_pages/appointment_web/doctor_appointment_web/upcomming_doctor_appointment.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentWeb extends StatefulWidget {
-  const AppointmentWeb({super.key});
+class DoctorAppointmentWeb extends StatefulWidget {
+  const DoctorAppointmentWeb({super.key});
 
   @override
-  State<AppointmentWeb> createState() => _AppointmentWebState();
+  State<DoctorAppointmentWeb> createState() => _DoctorAppointmentWebState();
 }
 
-class _AppointmentWebState extends State<AppointmentWeb> {
+class _DoctorAppointmentWebState extends State<DoctorAppointmentWeb> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,8 @@ class _AppointmentWebState extends State<AppointmentWeb> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (builder) => DoctorAppointmentWeb()));
+                              builder: (builder) =>
+                                  UpcommingDoctorAppointment()));
                     },
                     child: Card(
                       child: Column(
@@ -44,7 +45,7 @@ class _AppointmentWebState extends State<AppointmentWeb> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Doctor Appointment"),
+                            child: Text("Upcoming Appointment"),
                           ),
                         ],
                       ),
@@ -61,18 +62,19 @@ class _AppointmentWebState extends State<AppointmentWeb> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (builder) => ServiceAppointmentWeb()));
+                              builder: (builder) =>
+                                  CancelDoctorAppointmentWeb()));
                     },
                     child: Card(
                       child: Column(
                         children: [
                           Image.asset(
-                            "assets/newlogo.png",
+                            "assets/logo.png",
                             height: 170,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Service Appointment"),
+                            child: Text("Cancel Appointment"),
                           ),
                         ],
                       ),

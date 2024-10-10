@@ -48,15 +48,16 @@ class _DoctorsState extends State<Doctors> {
                     var snap = snapshot.data;
                     return LayoutBuilder(builder:
                         (BuildContext context, BoxConstraints constraints) {
-                      int columns = (constraints.maxWidth / 300)
-                          .floor(); // Assuming each item has a width of 200
                       return GridView.builder(
                         scrollDirection:
                             Axis.vertical, // Keep the scroll direction vertical
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: columns,
+                          crossAxisCount: _getCrossAxisCount(
+                              context), // Adjust the number of columns based on screen size
                           crossAxisSpacing: 8.0,
                           mainAxisSpacing: 8.0,
+                          childAspectRatio:
+                              1.0, // Adjust child aspect ratio as needed
                         ),
                         itemCount: snap.docs
                             .length, // Replace with your dynamic list length
@@ -86,30 +87,37 @@ class _DoctorsState extends State<Doctors> {
                                 crossAxisAlignment: CrossAxisAlignment
                                     .center, // Center the content horizontally
                                 children: [
-                                  Container(
-                                    height: 100,
-                                    child: Image.network(
-                                      doctorData['photoURL'],
-                                      width: 100,
+                                  Center(
+                                    child: Container(
                                       height: 100,
+                                      child: Image.network(
+                                        doctorData['photoURL'],
+                                        width: 100,
+                                        height: 100,
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 4.0, top: 8, right: 4),
-                                    child: Text(
-                                      doctorData['doctorName'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 12, color: appColor),
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 4.0, top: 8, right: 4),
+                                      child: Text(
+                                        doctorData['doctorName'],
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 12, color: appColor),
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 4.0, top: 8, right: 4),
-                                    child: Text(
-                                      doctorData['doctorCategory'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 12, color: appColor),
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 4.0, top: 8, right: 4),
+                                      child: Text(
+                                        textAlign: TextAlign.center,
+                                        doctorData['doctorCategory'],
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 12, color: appColor),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -125,5 +133,17 @@ class _DoctorsState extends State<Doctors> {
         ),
       ),
     );
+  }
+
+  // Adjust the crossAxisCount based on the screen width
+  int _getCrossAxisCount(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 1200) {
+      return 6; // 6 columns for large screens
+    } else if (screenWidth > 800) {
+      return 4; // 4 columns for medium screens
+    } else {
+      return 2; // 2 columns for small screens
+    }
   }
 }
