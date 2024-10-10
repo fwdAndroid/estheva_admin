@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:estheva_admin/mobile_section/doctor/add_doctor.dart';
+import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/website_section/web_home.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +45,29 @@ class DoctorAppointmentCompleteDetail extends StatefulWidget {
 
 class _DoctorAppointmentCompleteDetailState
     extends State<DoctorAppointmentCompleteDetail> {
+  String? selectedDoctor;
+  List<String> doctorNames = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDoctorNames();
+  }
+
+  Future<void> fetchDoctorNames() async {
+    // Fetch the data from Firestore
+    final QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('doctors').get();
+
+    // Extract doctor names
+    final List<String> names =
+        querySnapshot.docs.map((doc) => doc['doctorName'] as String).toList();
+
+    setState(() {
+      doctorNames = names;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -283,11 +309,42 @@ class _DoctorAppointmentCompleteDetailState
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset("assets/gen.png"),
-          )
+            child: Center(
+              child: doctorNames.isEmpty
+                  ? CircularProgressIndicator() // Show a loading indicator if data is still being fetched
+                  : DropdownButton<String>(
+                      isExpanded: true,
+                      hint: Text('Select Doctor'),
+                      value: selectedDoctor,
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedDoctor = newValue;
+                        });
+                      },
+                      items: doctorNames.map((doctor) {
+                        return DropdownMenuItem(
+                          value: doctor,
+                          child: Text(doctor),
+                        );
+                      }).toList(),
+                    ),
+            ),
+          ),
+
+          SaveButton(
+              title: "Change Doctor",
+              onTap: () async {
+                await FirebaseFirestore.instance
+                    .collection("doctor_appointment")
+                    .doc(widget.appointmentId)
+                    .update({"doctorName": selectedDoctor});
+                showMessageBar(
+                    "Doctor of Current Appointment is Changed", context);
+                Navigator.pop(context);
+              },
+              color: mainBtnColor)
         ],
       ),
     );

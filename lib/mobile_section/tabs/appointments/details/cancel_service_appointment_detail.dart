@@ -213,11 +213,6 @@ class _CancelServiceAppointmentDetailState
               ),
             ),
           ),
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset("assets/gen.png"),
-          )
         ],
       ),
     );

@@ -5,16 +5,16 @@ import 'package:estheva_admin/website_section/web_home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class UpcommingDoctorAppointment extends StatefulWidget {
-  const UpcommingDoctorAppointment({super.key});
+class UpcommingDoctorAppointmentMobile extends StatefulWidget {
+  const UpcommingDoctorAppointmentMobile({super.key});
 
   @override
-  State<UpcommingDoctorAppointment> createState() =>
-      _UpcommingDoctorAppointmentState();
+  State<UpcommingDoctorAppointmentMobile> createState() =>
+      _UpcommingDoctorAppointmentMobileState();
 }
 
-class _UpcommingDoctorAppointmentState
-    extends State<UpcommingDoctorAppointment> {
+class _UpcommingDoctorAppointmentMobileState
+    extends State<UpcommingDoctorAppointmentMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
