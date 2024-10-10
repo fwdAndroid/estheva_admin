@@ -17,7 +17,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 1,
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -43,16 +43,13 @@ class _AppointmentPageState extends State<AppointmentPage> {
                 text: "Upcoming",
               ),
               Tab(
-                text: "Completed",
-              ),
-              Tab(
                 text: "Cancelled",
               ),
             ],
           ),
         ),
         body: TabBarView(
-          children: <Widget>[Upcoming(), Completed(), Cancelled()],
+          children: <Widget>[Upcoming(), Cancelled()],
         ),
       ),
     );
