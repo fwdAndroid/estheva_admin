@@ -56,6 +56,7 @@ class FormSectionState extends State<FormSection> {
   TextEditingController serviceDescription = TextEditingController();
   TextEditingController price = TextEditingController();
   TextEditingController discount = TextEditingController();
+  TextEditingController time = TextEditingController();
   bool _isLoading = false;
   Uint8List? _image;
   String? imageUrl;
@@ -82,6 +83,7 @@ class FormSectionState extends State<FormSection> {
       discount.text =
           (data['discount'] ?? 0).toString(); // Convert int to string
       imageUrl = data['photoURL'];
+      time.text = data['time'] ?? "0.0";
     });
   }
 
@@ -133,6 +135,35 @@ class FormSectionState extends State<FormSection> {
                 textInputType: TextInputType.text),
           ),
           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormInputField(
+              onTap: () async {
+                TimeOfDay? pickedTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                  builder: (context, child) {
+                    return MediaQuery(
+                      data: MediaQuery.of(context)
+                          .copyWith(alwaysUse24HourFormat: true),
+                      child: child!,
+                    );
+                  },
+                );
+
+                if (pickedTime != null) {
+                  // Format the selected time to show only hours and minutes without AM/PM
+                  final String formattedTime = pickedTime
+                      .format(context)
+                      .replaceAll(RegExp(r'[^0-9:]'), '');
+                  time.text = formattedTime;
+                }
+              },
+              controller: time,
+              hintText: "Service Time",
+              textInputType: TextInputType.datetime,
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8),
             child: TextFormInputField(
                 controller: price,
@@ -180,7 +211,8 @@ class FormSectionState extends State<FormSection> {
                                   price.text), // Convert string to int
                               "discount": int.parse(
                                   discount.text), // Convert string to int
-                              "photoURL": downloadUrl
+                              "photoURL": downloadUrl,
+                              "time": time.text
                             });
                             showMessageBar(
                                 "Medical Services Updated Successfully ",

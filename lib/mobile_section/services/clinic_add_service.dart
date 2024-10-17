@@ -23,6 +23,7 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
   TextEditingController priceController = TextEditingController();
   TextEditingController discountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController serviceTimeController = TextEditingController();
   final Map<String, List<String>> _serviceCategories = {
     //Done
     'Body Contouring Packages': [
@@ -244,7 +245,32 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
                   ),
                 ),
               ),
+              TextFormInputField(
+                onTap: () async {
+                  TimeOfDay? pickedTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                    builder: (context, child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(context)
+                            .copyWith(alwaysUse24HourFormat: true),
+                        child: child!,
+                      );
+                    },
+                  );
 
+                  if (pickedTime != null) {
+                    // Format the selected time to show only hours and minutes without AM/PM
+                    final String formattedTime = pickedTime
+                        .format(context)
+                        .replaceAll(RegExp(r'[^0-9:]'), '');
+                    serviceTimeController.text = formattedTime;
+                  }
+                },
+                controller: serviceTimeController,
+                hintText: "Service Time",
+                textInputType: TextInputType.datetime,
+              ),
               Row(
                 children: [
                   Expanded(
@@ -292,7 +318,6 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
                       color: mainBtnColor,
                       title: "Publish",
                       onTap: () async {
-                        print("click");
                         if (descriptionController.text.isEmpty) {
                           showMessageBar("Description is Required", context);
                         } else if (_image == null) {
@@ -300,7 +325,6 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
                         } else if (priceController.text.isEmpty) {
                           showMessageBar("Price is Required", context);
                         } else {
-                          print("clsasdd");
                           int discount = 0;
                           if (discountController.text.isNotEmpty) {
                             discount =
@@ -317,6 +341,7 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
                           });
 
                           await Database().addServices(
+                              time: serviceTimeController.text.trim(),
                               type: "clinic",
                               serviceDescription:
                                   descriptionController.text.trim(),

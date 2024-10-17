@@ -51,6 +51,7 @@ class Database {
 
   Future<String> addServices(
       {required String serviceName,
+      required String time,
       required String serviceCategory,
       required String serviceSubcategory,
       required String serviceDescription,
@@ -69,6 +70,7 @@ class Database {
         var uuid = Uuid().v4();
         //Add User to the database with modal
         ServiceModel userModel = ServiceModel(
+            time: time,
             serviceCategory: serviceCategory,
             serviceDescription: serviceDescription,
             type: type,

@@ -6,6 +6,7 @@ class ServiceModel {
   String photoURL;
   int price;
   int discount;
+  String time;
   String serviceSubcategory;
   String serviceCategory;
   String serviceDescription;
@@ -17,6 +18,7 @@ class ServiceModel {
     required this.serviceCategory,
     required this.serviceSubcategory,
     required this.price,
+    required this.time,
     required this.type,
     required this.serviceDescription,
     required this.discount,
@@ -27,6 +29,7 @@ class ServiceModel {
   Map<String, dynamic> toJson() => {
         'photoURL': photoURL,
         'type': type,
+        'time': time,
         'uuid': uuid,
         'serviceSubcategory': serviceSubcategory,
         'discount': discount,
@@ -41,6 +44,7 @@ class ServiceModel {
     var snapshot = snaps.data() as Map<String, dynamic>;
 
     return ServiceModel(
+      time: snapshot['time'],
       photoURL: snapshot['photoURL'],
       type: snapshot['type'],
       serviceSubcategory: snapshot['serviceSubcategory'],

@@ -25,6 +25,7 @@ class _EditServicesState extends State<EditServices> {
   TextEditingController serviceDescription = TextEditingController();
   TextEditingController price = TextEditingController();
   TextEditingController discount = TextEditingController();
+  TextEditingController timeController = TextEditingController();
   bool _isLoading = false;
   Uint8List? _image;
   String? imageUrl;
@@ -51,6 +52,7 @@ class _EditServicesState extends State<EditServices> {
       discount.text =
           (data['discount'] ?? 0).toString(); // Convert int to string
       imageUrl = data['photoURL'];
+      timeController.text = data['time'] ?? "0.0";
     });
   }
 
@@ -120,6 +122,35 @@ class _EditServicesState extends State<EditServices> {
                     textInputType: TextInputType.text),
               ),
               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormInputField(
+                  onTap: () async {
+                    TimeOfDay? pickedTime = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                      builder: (context, child) {
+                        return MediaQuery(
+                          data: MediaQuery.of(context)
+                              .copyWith(alwaysUse24HourFormat: true),
+                          child: child!,
+                        );
+                      },
+                    );
+
+                    if (pickedTime != null) {
+                      // Format the selected time to show only hours and minutes without AM/PM
+                      final String formattedTime = pickedTime
+                          .format(context)
+                          .replaceAll(RegExp(r'[^0-9:]'), '');
+                      timeController.text = formattedTime;
+                    }
+                  },
+                  controller: timeController,
+                  hintText: "Service Time",
+                  textInputType: TextInputType.datetime,
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8),
                 child: TextFormInputField(
                     controller: price,
@@ -168,7 +199,8 @@ class _EditServicesState extends State<EditServices> {
                                       price.text), // Convert string to int
                                   "discount": int.parse(
                                       discount.text), // Convert string to int
-                                  "photoURL": downloadUrl
+                                  "photoURL": downloadUrl,
+                                  "time": timeController.text
                                 });
                                 showMessageBar(
                                     "Medical Services Updated Successfully ",

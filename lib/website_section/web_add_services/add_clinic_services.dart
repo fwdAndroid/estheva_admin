@@ -53,6 +53,7 @@ class _FormSectionState extends State<_FormSection> {
   TextEditingController priceController = TextEditingController();
   TextEditingController discountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController serviceTimeController = TextEditingController();
   var uuid = Uuid().v4();
   final Map<String, List<String>> _serviceCategories = {
     //Done
@@ -273,7 +274,31 @@ class _FormSectionState extends State<_FormSection> {
                 ),
               ),
             ),
+            TextFormInputField(
+                onTap: () async {
+                  TimeOfDay? pickedTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                    builder: (context, child) {
+                      return MediaQuery(
+                        data: MediaQuery.of(context)
+                            .copyWith(alwaysUse24HourFormat: true),
+                        child: child!,
+                      );
+                    },
+                  );
 
+                  if (pickedTime != null) {
+                    // Format the selected time to show only hours and minutes without AM/PM
+                    final String formattedTime = pickedTime
+                        .format(context)
+                        .replaceAll(RegExp(r'[^0-9:]'), '');
+                    serviceTimeController.text = formattedTime;
+                  }
+                },
+                controller: serviceTimeController,
+                hintText: "Select Time",
+                textInputType: TextInputType.datetime),
             Row(
               children: [
                 Expanded(
@@ -324,6 +349,8 @@ class _FormSectionState extends State<_FormSection> {
                         showMessageBar("Image is Required", context);
                       } else if (priceController.text.isEmpty) {
                         showMessageBar("Price is Required", context);
+                      } else if (serviceTimeController.text.isEmpty) {
+                        showMessageBar("Time is Required", context);
                       } else {
                         int discount = 0;
                         if (discountController.text.isNotEmpty) {
@@ -340,6 +367,7 @@ class _FormSectionState extends State<_FormSection> {
                         });
 
                         await Database().addServices(
+                            time: serviceTimeController.text.trim(),
                             type: "clinic",
                             serviceDescription:
                                 descriptionController.text.trim(),
