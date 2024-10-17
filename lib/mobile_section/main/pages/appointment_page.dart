@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:estheva_admin/mobile_section/tabs/cancelled.dart';
-import 'package:estheva_admin/mobile_section/tabs/completed.dart';
 import 'package:estheva_admin/mobile_section/tabs/upcomming.dart';
 import 'package:estheva_admin/utils/colors.dart';
 
