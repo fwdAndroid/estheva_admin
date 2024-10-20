@@ -89,111 +89,114 @@ class FormSectionState extends State<FormSection> {
   //Program
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.network(
-            widget.photoURL,
-            height: 200,
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              widget.serviceName,
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+    return Container(
+      width: 500,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.network(
+              widget.photoURL,
+              height: 200,
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                widget.serviceName,
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              widget.description,
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                color: Colors.black54,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                widget.description,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  color: Colors.black54,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              color: Colors.yellow.shade100,
-              padding: EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Icon(Icons.discount, color: Colors.orange),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.discount.toString() + "%",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                color: Colors.yellow.shade100,
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Icon(Icons.discount, color: Colors.orange),
+                    SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.discount.toString() + "%",
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      Text(
-                        widget.price.toString() + "AED",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: Colors.black54,
+                        Text(
+                          widget.price.toString() + "AED",
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            color: Colors.black54,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ProductDeleteWidget(uuid: widget.uuid);
+                      },
+                    );
+                  },
+                  child: Text(
+                    "Delete",
+                    style: TextStyle(color: colorwhite),
                   ),
-                ],
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ProductDeleteWidget(uuid: widget.uuid);
-                    },
-                  );
-                },
-                child: Text(
-                  "Delete",
-                  style: TextStyle(color: colorwhite),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: cancelColor, fixedSize: Size(150, 60)),
                 ),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: cancelColor, fixedSize: Size(150, 60)),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (builder) => EditServiceWeb(
-                                uuid: widget.uuid,
-                              )));
-                },
-                child: Text(
-                  "Edit Profile",
-                  style: TextStyle(color: colorwhite),
+                const SizedBox(
+                  width: 20,
                 ),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: g, fixedSize: Size(150, 60)),
-              ),
-            ],
-          )
-        ],
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (builder) => EditServiceWeb(
+                                  uuid: widget.uuid,
+                                )));
+                  },
+                  child: Text(
+                    "Edit Service",
+                    style: TextStyle(color: colorwhite),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: g, fixedSize: Size(150, 60)),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

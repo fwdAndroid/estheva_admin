@@ -115,11 +115,8 @@ class _FormSectionState extends State<_FormSection> {
                         setState(() {
                           isAdded = true;
                         });
-                        String photoURL =
-                            await StorageMethods().uploadImageToStorage(
-                          'offers',
-                          _image!,
-                        );
+                        String photoURL = await StorageMethods()
+                            .uploadImageToStorage('offers', _image!, true);
                         await FirebaseFirestore.instance
                             .collection("offers")
                             .doc(uuid)

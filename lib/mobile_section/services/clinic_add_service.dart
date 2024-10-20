@@ -245,31 +245,74 @@ class _ClinicAddServiceState extends State<ClinicAddService> {
                   ),
                 ),
               ),
-              TextFormInputField(
-                onTap: () async {
-                  TimeOfDay? pickedTime = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                    builder: (context, child) {
-                      return MediaQuery(
-                        data: MediaQuery.of(context)
-                            .copyWith(alwaysUse24HourFormat: true),
-                        child: child!,
-                      );
-                    },
-                  );
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8),
+                child: TextFormInputField(
+                  hintText: "Select Time",
+                  onTap: () async {
+                    int? pickedMinutes = await showDialog<int>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        int selectedMinutes = 0; // Default value
 
-                  if (pickedTime != null) {
-                    // Format the selected time to show only hours and minutes without AM/PM
-                    final String formattedTime = pickedTime
-                        .format(context)
-                        .replaceAll(RegExp(r'[^0-9:]'), '');
-                    serviceTimeController.text = formattedTime;
-                  }
-                },
-                controller: serviceTimeController,
-                hintText: "Service Time",
-                textInputType: TextInputType.datetime,
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return AlertDialog(
+                              title: Text('Select Minutes'),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Slider(
+                                    value: selectedMinutes.toDouble(),
+                                    min: 0,
+                                    max: 120,
+                                    divisions: 120,
+                                    label: "$selectedMinutes mins",
+                                    onChanged: (double value) {
+                                      setState(() {
+                                        selectedMinutes = value.toInt();
+                                      });
+                                    },
+                                  ),
+                                  Text("Selected: $selectedMinutes mins"),
+                                ],
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop(selectedMinutes);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    );
+
+                    if (pickedMinutes != null) {
+                      // Calculate hours and minutes
+                      int hours = pickedMinutes ~/ 60;
+                      int minutes = pickedMinutes % 60;
+                      String formattedTime;
+
+                      if (hours > 0 && minutes > 0) {
+                        formattedTime =
+                            '$hours hr${hours > 1 ? 's' : ''} and $minutes min${minutes > 1 ? 's' : ''}';
+                      } else if (hours > 0) {
+                        formattedTime = '$hours hr${hours > 1 ? 's' : ''}';
+                      } else {
+                        formattedTime = '$minutes min${minutes > 1 ? 's' : ''}';
+                      }
+
+                      // Display the formatted time in the TextFormField
+                      serviceTimeController.text = formattedTime;
+                    }
+                  },
+                  controller: serviceTimeController,
+                  textInputType: TextInputType.number,
+                ),
               ),
               Row(
                 children: [

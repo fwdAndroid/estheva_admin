@@ -20,14 +20,13 @@ class Database {
     String res = 'Wrong Service Name';
     try {
       if (serviceName.isNotEmpty || serviceDescription.isNotEmpty) {
-        String photoURL = await StorageMethods().uploadImageToStorage(
-          'ProfilePics',
-          file,
-        );
+        String photoURL = await StorageMethods()
+            .uploadImageToStorage('ProfilePics', file, false);
 
         var uuid = Uuid().v4();
         //Add User to the database with modal
         DoctorModel userModel = DoctorModel(
+            isOnline: false,
             email: doctorEmail,
             pass: doctorPassword,
             doctorCategory: serviceCategory,
@@ -62,10 +61,8 @@ class Database {
     String res = 'Wrong Service Name';
     try {
       if (serviceName.isNotEmpty || serviceDescription.isNotEmpty) {
-        String photoURL = await StorageMethods().uploadImageToStorage(
-          'ProfilePics',
-          file,
-        );
+        String photoURL = await StorageMethods()
+            .uploadImageToStorage('ServicesPics', file, true);
 
         var uuid = Uuid().v4();
         //Add User to the database with modal
@@ -100,10 +97,8 @@ class Database {
     String res = 'Wrong medicineName or uuidword';
     try {
       if (medicineName.isNotEmpty || category.isNotEmpty) {
-        String photoURL = await StorageMethods().uploadImageToStorage(
-          'ProfilePics',
-          file,
-        );
+        String photoURL = await StorageMethods()
+            .uploadImageToStorage('ServicesPic', file, true);
 
         var uuid = Uuid().v4();
         //Add User to the database with modal
