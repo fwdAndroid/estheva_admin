@@ -10,6 +10,7 @@ class DoctorModel {
   String experience;
   String doctorCategory;
   String doctorDescription;
+  String status;
   bool isOnline = false;
 
   DoctorModel({
@@ -19,6 +20,7 @@ class DoctorModel {
     required this.experience,
     required this.email,
     required this.pass,
+    required this.status,
     required this.isOnline,
     required this.price,
     required this.doctorDescription,
@@ -30,6 +32,7 @@ class DoctorModel {
         'photoURL': photoURL,
         'isOnline': isOnline,
         'email': email,
+        'status': status,
         "pass": pass,
         'uuid': uuid,
         'experience': experience,
@@ -49,6 +52,7 @@ class DoctorModel {
       isOnline: snapshot['isOnline'],
       photoURL: snapshot['photoURL'],
       experience: snapshot['experience'],
+      status: snapshot['status'],
       uuid: snapshot['uuid'],
       doctorDescription: snapshot['doctorDescription'],
       doctorCategory: snapshot['doctorCategory'],

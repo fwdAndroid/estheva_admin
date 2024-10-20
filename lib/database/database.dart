@@ -26,6 +26,7 @@ class Database {
         var uuid = Uuid().v4();
         //Add User to the database with modal
         DoctorModel userModel = DoctorModel(
+            status: "Free",
             isOnline: false,
             email: doctorEmail,
             pass: doctorPassword,
