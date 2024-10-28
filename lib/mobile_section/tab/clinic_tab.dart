@@ -111,9 +111,9 @@ class _ClinicTabState extends State<ClinicTab> {
                                       MaterialPageRoute(
                                           builder: (builder) => OfferDetail(
                                                 offerDetail:
-                                                    item['offerDetail']!,
-                                                uuid: item['uuid']!,
-                                                photos: item['photos']!,
+                                                    item['offerDetail'],
+                                                uuid: item['uuid'],
+                                                photos: item['photos'],
                                               )));
                                 },
                                 child: Container(
