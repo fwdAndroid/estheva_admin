@@ -1,4 +1,5 @@
 import 'package:estheva_admin/mobile_section/auth/signup_screen.dart';
+import 'package:estheva_admin/mobile_section/doctor_appointment/doctor_appointment_list.dart';
 import 'package:estheva_admin/mobile_section/setting/change_password.dart';
 import 'package:estheva_admin/mobile_section/setting/notification_screen.dart';
 import 'package:estheva_admin/mobile_section/setting/support.dart';
@@ -123,6 +124,33 @@ class _HistoryPageState extends State<HistoryPage> {
                       ),
                       title: Text(
                         "Notifications",
+                        style: GoogleFonts.workSans(
+                            fontWeight: FontWeight.w500, fontSize: 16),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: appColor,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: Divider(
+                        color: borderColor,
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (builder) => DoctorAppointmentList()));
+                      },
+                      leading: Icon(
+                        Icons.app_blocking,
+                        color: appColor,
+                      ),
+                      title: Text(
+                        "Doctor Appointments",
                         style: GoogleFonts.workSans(
                             fontWeight: FontWeight.w500, fontSize: 16),
                       ),
