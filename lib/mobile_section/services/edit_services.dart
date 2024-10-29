@@ -67,7 +67,7 @@ class _EditServicesState extends State<EditServices> {
     Reference ref = FirebaseStorage.instance
         .ref()
         .child('services')
-        .child('${FirebaseAuth.instance.currentUser!.uid}.jpg');
+        .child('${widget.uuid}.jpg'); // Use UUID for unique storage paths
     UploadTask uploadTask = ref.putData(image);
     TaskSnapshot snapshot = await uploadTask;
     return await snapshot.ref.getDownloadURL();
