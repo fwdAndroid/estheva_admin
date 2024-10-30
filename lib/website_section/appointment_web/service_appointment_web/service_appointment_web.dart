@@ -1,5 +1,5 @@
-import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/cancel_service_appointment.dart';
-import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/upcomming_service_appointment.dart';
+import 'package:estheva_admin/website_section/appointment_web/service_appointment_web/cancel_service_appointment.dart';
+import 'package:estheva_admin/website_section/appointment_web/service_appointment_web/upcomming_service_appointment.dart';
 import 'package:flutter/material.dart';
 
 class ServiceAppointmentWeb extends StatefulWidget {

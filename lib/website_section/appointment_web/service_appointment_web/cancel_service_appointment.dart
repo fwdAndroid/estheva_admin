@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estheva_admin/utils/colors.dart';
-import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/service_appointment_detail/cancel_service_appointment_detail.dart';
+import 'package:estheva_admin/website_section/appointment_web/service_appointment_web/service_appointment_detail/cancel_service_appointment_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
