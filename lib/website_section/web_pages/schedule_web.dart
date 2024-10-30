@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:estheva_admin/mobile_section/doctor_appointment/change_appointment_schedule.dart';
+import 'package:estheva_admin/mobile_section/doctor/doctor_appointment/change_appointment_schedule.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

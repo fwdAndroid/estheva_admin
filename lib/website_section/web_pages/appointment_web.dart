@@ -1,5 +1,5 @@
-import 'package:estheva_admin/website_section/web_pages/appointment_web/doctor_appointment_web/doctor_appointment_web.dart';
-import 'package:estheva_admin/website_section/web_pages/appointment_web/service_appointment_web/service_appointment_web.dart';
+import 'package:estheva_admin/website_section/appointment_web/doctor_appointment_web/doctor_appointment_web.dart';
+import 'package:estheva_admin/website_section/appointment_web/service_appointment_web/service_appointment_web.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentWeb extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:estheva_admin/mobile_section/tab/clinic_tab.dart';
-import 'package:estheva_admin/mobile_section/tab/home_care_tab.dart';
+import 'package:estheva_admin/mobile_section/services_tab/clinic_tab.dart';
+import 'package:estheva_admin/mobile_section/services_tab/home_care_tab.dart';
 import 'package:estheva_admin/utils/colors.dart';
 
 class MainHomeMobile extends StatefulWidget {

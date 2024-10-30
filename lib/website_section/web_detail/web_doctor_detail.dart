@@ -1,8 +1,6 @@
 import 'package:estheva_admin/utils/colors.dart';
-import 'package:estheva_admin/website_section/web_add_services/edit_doctor_web.dart';
-import 'package:estheva_admin/website_section/web_add_services/edit_service_web.dart';
+import 'package:estheva_admin/website_section/add_edit/edit_doctor_web.dart';
 import 'package:estheva_admin/website_section/web_widgets/doctor_web_delete_widget.dart';
-import 'package:estheva_admin/widgets/delete_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

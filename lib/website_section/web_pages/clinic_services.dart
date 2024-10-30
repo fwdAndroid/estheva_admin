@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estheva_admin/utils/colors.dart';
-import 'package:estheva_admin/website_section/web_add_services/add_clinic_services.dart';
+import 'package:estheva_admin/website_section/add_edit/add_clinic_services.dart';
 import 'package:estheva_admin/website_section/web_detail/web_product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:estheva_admin/mobile_section/details/doctor_detail.dart';
+import 'package:estheva_admin/mobile_section/doctor/doctor_detail.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

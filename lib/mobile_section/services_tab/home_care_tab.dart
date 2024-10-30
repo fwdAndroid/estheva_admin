@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:estheva_admin/mobile_section/details/offer_detail.dart';
+import 'package:estheva_admin/mobile_section/offers/offer_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:estheva_admin/mobile_section/details/product_detail.dart';
-import 'package:estheva_admin/mobile_section/services/add_services.dart';
+import 'package:estheva_admin/mobile_section/service_booking/product_detail.dart';
+import 'package:estheva_admin/mobile_section/add_edit_services/add_services.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:carousel_slider/carousel_slider.dart' as cs;
 

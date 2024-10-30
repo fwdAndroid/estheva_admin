@@ -1,6 +1,5 @@
 import 'package:estheva_admin/mobile_section/tabs/appointments/service_appointment_upcoming.dart';
 import 'package:estheva_admin/mobile_section/tabs/appointments/upcomming_doctor_appointment.dart';
-import 'package:estheva_admin/website_section/web_pages/appointment_web/doctor_appointment_web/upcomming_doctor_appointment.dart';
 import 'package:flutter/material.dart';
 
 class Upcoming extends StatefulWidget {

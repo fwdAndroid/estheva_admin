@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
-import 'package:estheva_admin/website_section/web_add_services/add_doctor_web.dart';
+import 'package:estheva_admin/website_section/add_edit/add_doctor_web.dart';
 import 'package:estheva_admin/website_section/web_home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

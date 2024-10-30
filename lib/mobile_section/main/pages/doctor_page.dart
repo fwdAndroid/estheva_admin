@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:estheva_admin/mobile_section/details/doctor_detail.dart';
+import 'package:estheva_admin/mobile_section/doctor/doctor_detail.dart';
 import 'package:estheva_admin/mobile_section/doctor/add_doctor.dart';
 import 'package:estheva_admin/utils/colors.dart';
 

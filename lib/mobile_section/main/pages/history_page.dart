@@ -1,12 +1,11 @@
 import 'package:estheva_admin/mobile_section/auth/signup_screen.dart';
-import 'package:estheva_admin/mobile_section/doctor_appointment/doctor_appointment_list.dart';
+import 'package:estheva_admin/mobile_section/doctor/doctor_appointment/doctor_appointment_list.dart';
 import 'package:estheva_admin/mobile_section/setting/change_password.dart';
 import 'package:estheva_admin/mobile_section/setting/notification_screen.dart';
 import 'package:estheva_admin/mobile_section/setting/support.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:estheva_admin/mobile_section/appointments/appointment_history.dart';
 import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/widgets/logout_widget.dart';

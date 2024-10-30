@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/utils/image_utils.dart';
-import 'package:estheva_admin/website_section/web_add_services/add_home_services.dart';
+import 'package:estheva_admin/website_section/add_edit/add_home_services.dart';
 import 'package:estheva_admin/website_section/web_home.dart';
 import 'package:estheva_admin/widgets/text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';

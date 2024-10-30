@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:estheva_admin/mobile_section/services/edit_services.dart';
+import 'package:estheva_admin/mobile_section/add_edit_services/edit_services.dart';
 import 'package:estheva_admin/utils/buttons.dart';
 import 'package:estheva_admin/utils/colors.dart';
 import 'package:estheva_admin/widgets/delete_widgets.dart';
